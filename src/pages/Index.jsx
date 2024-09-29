@@ -10,8 +10,51 @@ import ContactUs from "../components/ContactUs";
 import AboutUs from "../components/AboutUs";
 import Footer from "../components/Footer";
 import BenefitsShowcase from "../components/BenefitsShowcase";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "../../utils/getData";
 
 const Index = () => {
+  const { data: televisionData } = useQuery({
+    queryKey: ["television"],
+    queryFn: () => {
+      return api.get(`/televisions`).then((res) => res.data);
+    },
+  });
+
+  const { data: refrigeratorsData } = useQuery({
+    queryKey: ["refrigerators"],
+    queryFn: () => {
+      return api.get(`/refrigerators`).then((res) => res.data);
+    },
+  });
+
+  const { data: acData } = useQuery({
+    queryKey: ["acs"],
+    queryFn: () => {
+      return api.get(`/acs`).then((res) => res.data);
+    },
+  });
+
+  const { data: coolerData } = useQuery({
+    queryKey: ["cooler"],
+    queryFn: () => {
+      return api.get(`/coolers`).then((res) => res.data);
+    },
+  });
+
+  const { data: washingData } = useQuery({
+    queryKey: ["washing"],
+    queryFn: () => {
+      return api.get(`/washing-machines`).then((res) => res.data);
+    },
+  });
+
+  console.log(televisionData?.data);
+  console.log(refrigeratorsData?.data);
+  console.log(acData?.data);
+  console.log(coolerData?.data);
+  console.log(washingData?.data);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
